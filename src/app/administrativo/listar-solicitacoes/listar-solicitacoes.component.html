@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+
+<div class="container pt-4">
+  <div class="list-group">
+    <a *ngFor="let item of list"  class="list-group-item d-flex justify-content-between align-items-center">
+      <p routerLink="/solicitar-deletar/{{item.Id}}" *ngIf="!item.Tipo">
+          {{item.Entidade}}
+          <span class="badge badge-danger" >Desativação</span>
+      </p>
+      <p routerLink="/solicitar-criar/{{item.Id}}" *ngIf="item.Tipo">
+        {{item.Entidade}}
+    </p>
+    </a>
+  </div>
+</div>
+
+

@@ -1,0 +1,10 @@
+<app-header></app-header>
+
+<div class="container pt-4">
+  <div class="list-group">
+    <a *ngFor="let entidade of entidades" routerLink="/detalhes-entidade/{{entidade.Id}}" class="list-group-item list-group-item-action">
+      {{entidade.NomeFantasia}}
+    </a>
+  </div>
+</div>
+

@@ -1,0 +1,442 @@
+<app-header></app-header>
+
+<div class="container pt-4">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <fieldset>
+      <legend>Criar entidade</legend>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nome Empresarial</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.NomeEmpresarial"
+            name="nomeEmpresarial"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nome Fantasia</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.NomeFantasia"
+            name="nomeFantasia"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Email institucional</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Email"
+            name="email"
+            type="email"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Telefone primário</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.TelefonePrimario"
+            mask="(00) 0000-0000"
+            name="telPrim"
+            type="tel"
+            required
+            [disabled]="solicitacao"
+            placeholder="()"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Telefone secundário</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.TelefoneSecundario"
+            mask="(00) 0000-0000"
+            name="telSec"
+            type="tel"
+            placeholder="()"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Data Abertura</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.DataAbertura"
+            name="dataAbertura"
+            type="date"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Inscrição estadual</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.CNPJ"
+            mask="00.000.000/0000-00"
+            name="cnpj"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Descrição da atividade</label>
+        <div class="col-sm-10">
+          <textarea
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Descricao"
+            name="descricao"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          ></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Logradouro</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Endereco.Logradouro"
+            name="logradouro"
+            type="text"
+            required
+            [disabled]="solicitacao"
+            placeholder="Rua, Avenida, Alameda, ..."
+          />
+        </div>
+        <label class="col-sm-2 col-form-label">Número</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Endereco.Numero"
+            name="numero"
+            type="number"
+            required
+            [disabled]="solicitacao"
+            placeholder="Nº"
+          />
+        </div>
+        <label class="col-sm-2 col-form-label">Bairro</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Endereco.Bairro"
+            name="bairro"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+        <label class="col-sm-2 col-form-label">Cidade</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Endereco.Cidade"
+            name="cidade"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+        <label class="col-sm-2 col-form-label">Estado</label>
+        <div class="col-sm-10">
+          <select
+            class="custom-select"
+            [(ngModel)]="entidade.Endereco.Estado"
+            name="estado"
+            required
+            [disabled]="solicitacao"
+          >
+            <option selected="">Selecione o estado</option>
+            <option value="estado.sigla" *ngFor="let estado of estados">{{
+              estado.nome
+            }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="!solicitacao">
+        <label class="col-sm-2 col-form-label">OSCIP</label>
+        <div class="col-sm-10">
+          <div class="custom-file">
+            <label class="custom-file-label" for="imagem"
+              >Escolher arquivo</label
+            >
+            <input
+              type="file"
+              class="custom-file-input"
+              id="imagem"
+              [(ngModel)]="OSCIP"
+              name="OSCIP"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="!solicitacao">
+        <label class="col-sm-2 col-form-label">OS</label>
+        <div class="col-sm-10">
+          <div class="custom-file">
+            <label class="custom-file-label" for="imagem"
+              >Escolher arquivo</label
+            >
+            <input
+              type="file"
+              class="custom-file-input"
+              [(ngModel)]="OS"
+              name="OS"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="!solicitacao">
+        <label class="col-sm-2 col-form-label">CEBAS</label>
+        <div class="col-sm-10">
+          <div class="custom-file">
+            <label class="custom-file-label" for="imagem"
+              >Escolher arquivo</label
+            >
+            <input
+              type="file"
+              class="custom-file-input"
+              [(ngModel)]="CEBAS"
+              name="CEBAS"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="!solicitacao">
+        <label class="col-sm-2 col-form-label">Logotipo</label>
+        <div class="col-sm-10">
+          <div class="custom-file">
+            <label class="custom-file-label" for="imagem"
+              >Escolher arquivo</label
+            >
+            <input
+              type="file"
+              class="custom-file-input"
+              [(ngModel)]="Imagem"
+              name="logo"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Localização</label>
+        <div class="col-sm-10">
+          <p>Instruções:</p>
+          <ul>
+            <li>
+              Acesse
+              <a href="https://www.google.com.br/maps/" target="_blank"
+                >https://www.google.com.br/maps/</a
+              >;
+            </li>
+            <li>Busque pelo local desejado;</li>
+            <li>Clique em compartilhar;</li>
+            <li>Selecione a aba "Incorporar mapa";</li>
+            <li>Clique em "Copiar HTML";</li>
+          </ul>
+        </div>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Endereco.Localizacao"
+            name="localizacao"
+            type="text"
+            placeholder="Cole aqui a localização"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <legend>Representante</legend>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Nome"
+            name="rpNome"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">CPF</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.CPF"
+            mask="000.000.000-00"
+            name="rpCPF"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Carteira de identidade</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Identidade"
+            name="rpIdentidade"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Cargo</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Cargo"
+            name="rpCargo"
+            type="text"
+            [disabled]="solicitacao"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Telefone</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Telefone"
+            mask="(00) 0000-0000"
+            name="rpTel"
+            type="tel"
+            [disabled]="solicitacao"
+            placeholder="()"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Celular</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Celular"
+            mask="(00) 0 0000-0000"
+            name="rpCel"
+            type="tel"
+            required
+            [disabled]="solicitacao"
+            placeholder="()"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Logradouro</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Endereco.Logradouro"
+            name="rpLogradouro"
+            type="text"
+            required
+            [disabled]="solicitacao"
+            placeholder="Rua, Avenida, Alameda, ..."
+          />
+        </div>
+        <label class="col-sm-2 col-form-label">Número</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Endereco.Numero"
+            name="rpEndNumero"
+            type="number"
+            required
+            [disabled]="solicitacao"
+            placeholder="Nº"
+          />
+        </div>
+        <label class="col-sm-2 col-form-label">Bairro</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Endereco.Bairro"
+            name="rpBairro"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+        <label class="col-sm-2 col-form-label">Cidade</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Endereco.Cidade"
+            name="rpCidade"
+            type="text"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
+        <label class="col-sm-2 col-form-label">Estado</label>
+        <div class="col-sm-10">
+          <select
+            class="custom-select"
+            [(ngModel)]="representante.Endereco.Estado"
+            name="rpEstado"
+            required
+            [disabled]="solicitacao"
+          >
+            <option selected="">Selecione o estado</option>
+            <option value="estado.sigla" *ngFor="let estado of estados">{{
+              estado.nome
+            }}</option>
+          </select>
+        </div>
+      </div>
+      <button
+        type="submit"
+        *ngIf="!user.Id && !solicitacao"
+        class="btn btn-primary btn-lg btn-block"
+      >
+        Solicitar cadastro
+      </button>
+      <button
+        type="submit"
+        *ngIf="user.Id == 999"
+        class="btn btn-primary btn-lg btn-block"
+      >
+        Cadastrar
+      </button>
+      <button class="btn btn-primary btn-lg btn-block" *ngIf="user.Id != 999">
+        Editar
+      </button>
+      <button class="btn btn-danger btn-lg btn-block" routerLink="/solicitar-deletar" *ngIf="user.Id != 999">
+        Solicitar desativação
+      </button>
+    </fieldset>
+  </form>
+</div>

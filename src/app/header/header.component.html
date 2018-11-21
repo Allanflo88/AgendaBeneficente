@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" routerLink="/feed">Agenda Beneficente</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/feed">Feed</a>
+          </li>
+          <li class="nav-item" *ngIf="user.Id">
+              <a class="nav-link" routerLink="/entidades">Entidades</a>
+          </li>
+          <li class="nav-item" *ngIf="user.Id">
+              <a class="nav-link" routerLink="/solicitacoes">Solicitações</a>
+          </li>
+          <li class="nav-item" *ngIf="user.Id">
+              <a class="nav-link" routerLink="/criar-evento">Criar evento</a>
+          </li>
+          <li class="nav-item" *ngIf="user.Id">
+                <a class="nav-link" routerLink="/solicitar-criar/{{user.Id}}">Perfil</a>
+            </li>
+          <li class="nav-item" *ngIf="!user.Id">
+              <a class="nav-link" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item" *ngIf="user.Id">
+                <a class="nav-link" routerLink="/login">Sair</a>
+            </li>
+      </ul>
+
+  </div>
+</nav>

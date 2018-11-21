@@ -1,0 +1,14 @@
+<div class="container bg-light pt-2">
+  <form>
+    <div class="form-group bg-">
+      <input class="form-control" type="text" placeholder="{{options[0]}}"/>
+      <select class="custom-select mt-1">
+        <option selected="">Selecione filtro</option>
+        <option *ngFor="let opt of options">{{opt}}</option>
+      </select>
+      <button class="btn btn-primary btn-lg btn-block mt-1"  type="submit">
+        Filtrar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,11 @@
+<app-header></app-header>
+<app-filtro></app-filtro>
+
+<div class="container">
+  <div class="row">
+    <div routerLink="/detalhes-evento/{{evento.id}}" class="text-decoration-none col col-12 col-sm-12 col-md-4 mt-2 mb-2" *ngFor="let evento of eventos">
+        <app-card-evento [evento]="evento"></app-card-evento>
+    </div>
+  </div>
+</div>
+

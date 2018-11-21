@@ -1,0 +1,53 @@
+<app-header></app-header>
+
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-sm d-flex justify-content-center">
+      <img class="img-fluid" src={{evento.imagem}}>
+    </div>
+    <div class="col-sm d-flex justify-content-center pt-4">
+      <h1>{{evento.titulo}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm d-flex justify-content-center">
+      <h5>Realizado por <a routerLink="/detalhes-entidade/{{entidade.Id}}">{{entidade.NomeFantasia}}</a></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm d-flex flex-column align-items-center">
+      <h6 *ngIf="evento.dataInicio != evento.dataFim">De {{evento.dataInicio}} até {{evento.dataFim}}</h6>
+      <h6 *ngIf="evento.dataInicio == evento.dataFim">Em {{evento.dataInicio}}</h6>
+      <h6>Das {{evento.horaInicio}} as {{evento.horaFim}}</h6>
+    </div>
+    <div class="col-sm d-flex flex-column justify-content-center">
+      <h5>Descrição:</h5>
+      <p>{{evento.descricao}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h5>Endereço</h5>
+      <p class="text-justify">{{evento.endereco.logradouro}}, {{evento.endereco.numero}}</p>
+      <p class="text-justify">{{evento.endereco.bairro}}, {{evento.endereco.cidade}} - {{evento.endereco.estado}}</p>
+      <p class="text-justify">CEP: {{evento.endereco.CEP}}</p>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <iframe [src]="evento.endereco.localizacao" width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="row" *ngIf="user.Id">
+    <div class="col">
+        <button routerLink="/criar-evento/{{evento.id}}"
+        class="btn btn-primary btn-lg btn-block"
+      >
+        Editar
+      </button>
+        <button
+        class="btn btn-danger btn-lg btn-block"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
