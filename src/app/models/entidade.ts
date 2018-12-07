@@ -13,11 +13,11 @@ export class Entidade {
   CNPJ: String;
   Descricao: String;
   Endereco: Endereco;
-  OSCIP: Url;
-  OS: Url;
-  CEBAS: Url;
+  OSCIP: File | Url;
+  OS: File | Url;
+  CEBAS: File | Url;
   Representante: Number;
-  Imagem: Url;
+  Imagem: File | Url;
 
   constructor(){
     this.Endereco = new Endereco();

@@ -173,6 +173,47 @@
             }}</option>
           </select>
         </div>
+        <label class="col-sm-2 col-form-label">CEP</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Endereco.CEP"
+            name="cep"
+            type="text"
+            required
+            [disabled]="solicitacao"
+            mask="00000-000"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Localização</label>
+        <div class="col-sm-10">
+          <p>Instruções:</p>
+          <ul>
+            <li>
+              Acesse
+              <a href="https://www.google.com.br/maps/" target="_blank"
+                >https://www.google.com.br/maps/</a
+              >;
+            </li>
+            <li>Busque pelo local desejado;</li>
+            <li>Clique em compartilhar;</li>
+            <li>Selecione a aba "Incorporar mapa";</li>
+            <li>Clique em "Copiar HTML";</li>
+          </ul>
+        </div>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="entidade.Endereco.Localizacao"
+            name="localizacao"
+            type="text"
+            placeholder="Cole aqui a localização"
+            required
+            [disabled]="solicitacao"
+          />
+        </div>
       </div>
       <div class="form-group row" *ngIf="!solicitacao">
         <label class="col-sm-2 col-form-label">OSCIP</label>
@@ -241,35 +282,6 @@
               required
             />
           </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Localização</label>
-        <div class="col-sm-10">
-          <p>Instruções:</p>
-          <ul>
-            <li>
-              Acesse
-              <a href="https://www.google.com.br/maps/" target="_blank"
-                >https://www.google.com.br/maps/</a
-              >;
-            </li>
-            <li>Busque pelo local desejado;</li>
-            <li>Clique em compartilhar;</li>
-            <li>Selecione a aba "Incorporar mapa";</li>
-            <li>Clique em "Copiar HTML";</li>
-          </ul>
-        </div>
-        <div class="col-sm-10">
-          <input
-            class="form-control-plaintext"
-            [(ngModel)]="entidade.Endereco.Localizacao"
-            name="localizacao"
-            type="text"
-            placeholder="Cole aqui a localização"
-            required
-            [disabled]="solicitacao"
-          />
         </div>
       </div>
       <legend>Representante</legend>
@@ -416,6 +428,18 @@
             }}</option>
           </select>
         </div>
+        <label class="col-sm-2 col-form-label">CEP</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            [(ngModel)]="representante.Endereco.CEP"
+            name="cep"
+            type="text"
+            required
+            [disabled]="solicitacao"
+            mask="00000-000"
+          />
+        </div>
       </div>
       <button
         type="submit"
@@ -426,15 +450,19 @@
       </button>
       <button
         type="submit"
-        *ngIf="user.Id == 999"
+        *ngIf="solicitacao && permission"
         class="btn btn-primary btn-lg btn-block"
       >
         Cadastrar
       </button>
-      <button class="btn btn-primary btn-lg btn-block" *ngIf="user.Id != 999">
+      <button class="btn btn-primary btn-lg btn-block" *ngIf="solicitacao && !permission">
         Editar
       </button>
-      <button class="btn btn-danger btn-lg btn-block" routerLink="/solicitar-deletar" *ngIf="user.Id != 999">
+      <button
+        class="btn btn-danger btn-lg btn-block"
+        routerLink="/solicitar-deletar"
+        *ngIf="solicitacao && !permission"
+      >
         Solicitar desativação
       </button>
     </fieldset>

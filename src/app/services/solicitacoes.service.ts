@@ -11,7 +11,9 @@ export class SolicitacoesService {
   }
 
   getSolicitacao(id){
-
+    this.solicitacoes.find((item)=>{
+      return item.Id == id;
+    })
     return id;
   }
 

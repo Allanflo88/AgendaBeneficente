@@ -5,13 +5,14 @@ import { Solicitacao } from 'src/app/models/solicitacao';
 import { ActivatedRoute } from '@angular/router';
 import { SolicitacoesService } from 'src/app/services/solicitacoes.service';
 import { DataStorageService } from 'src/app/services/data-storage.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-solicitar-deletar-entidade',
   templateUrl: './solicitar-deletar-entidade.component.html',
   styleUrls: ['./solicitar-deletar-entidade.component.css']
 })
-export class SolicitarDeletarEntidadeComponent implements OnInit {
+export class SolicitarDeletarEntidadeComponent{
 
   representante: Representante;
   estados = [];
@@ -33,7 +34,13 @@ export class SolicitarDeletarEntidadeComponent implements OnInit {
     console.log(this.solicitacao);
   }
 
-  ngOnInit() {
+  onSubmit(f:NgForm){
+    if(f.invalid || f.untouched || f.errors || f.pristine){
+      alert("Há campos incorretos ou não preenchidos");
+    }
+    else{
+      alert("Sua solicitação foi enviada");
+    }
   }
 
 }

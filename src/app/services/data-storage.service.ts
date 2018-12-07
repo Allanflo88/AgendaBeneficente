@@ -17,4 +17,7 @@ export class DataStorageService {
   getItem(title){
     return this.localStorage.getItem(title);
   }
+  clear(){
+    this.localStorage.clear();
+  }
 }

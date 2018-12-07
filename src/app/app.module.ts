@@ -4,6 +4,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { NgxMaskModule } from "ngx-mask";
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 
 import { AppComponent } from "./app.component";
 import { SolicitarCriarEntidadeComponent } from "./administrativo/solicitar-criar-entidade/solicitar-criar-entidade.component";
@@ -70,9 +72,10 @@ const firebase = {
     RouterModule.forRoot(routes),
     FormsModule,
     NgxMaskModule.forRoot(),
-    AngularFireModule.initializeApp(firebase)
+    AngularFireModule.initializeApp(firebase),
+    AngularFireStorageModule
   ],
-  providers: [EntidadesService, DataStorageService],
+  providers: [EntidadesService, DataStorageService, AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

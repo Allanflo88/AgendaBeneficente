@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Entidade } from 'src/app/models/entidade';
 import { Representante } from 'src/app/models/representante';
-import { NgForm, AbstractControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { EstadosService } from 'src/app/services/estados.service';
 import { ActivatedRoute } from '@angular/router';
 import { SolicitacoesService } from 'src/app/services/solicitacoes.service';
@@ -26,6 +26,7 @@ export class SolicitarCriarEntidadeComponent{
   user = {
     Id: (new DataStorageService).getItem("user") 
   };
+  permission = this.user.Id == "-1"
   constructor(private estadoService: EstadosService, private route: ActivatedRoute, private solicitacoesService: SolicitacoesService) {
     this.entidade = new Entidade();
     this.representante = new Representante();
@@ -45,7 +46,6 @@ export class SolicitarCriarEntidadeComponent{
     }
     else{
       alert("Sua solicitação foi enviada");
-
     }
   }
 

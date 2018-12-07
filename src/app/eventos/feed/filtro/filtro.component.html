@@ -1,8 +1,9 @@
 <div class="container bg-light pt-2">
-  <form>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="form-group bg-">
-      <input class="form-control" type="text" placeholder="{{options[0]}}"/>
-      <select class="custom-select mt-1">
+      <input class="form-control" id="filtro" type="text" name="filtro" placeholder="{{tipo}}" [(ngModel)]="filtro" *ngIf="!(tipo == 'Data')"/>
+      <input class="form-control" type="date" name="filtro" placeholder="{{tipo}}" [(ngModel)]="filtro" *ngIf="tipo == 'Data'"/>
+      <select class="custom-select mt-1" [(ngModel)]="tipo" name="tipo" (change)="resetFiltro()">
         <option selected="">Selecione filtro</option>
         <option *ngFor="let opt of options">{{opt}}</option>
       </select>

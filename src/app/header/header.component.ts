@@ -6,15 +6,15 @@ import { DataStorageService } from '../services/data-storage.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
 
   user = {
-    Id: (new DataStorageService).getItem("user") 
+    Id: (new DataStorageService).getItem("user")
   };
+  permission = this.user.Id == "-1";
 
-  constructor() { }
+  constructor() {
 
-  ngOnInit() {
   }
 
 }

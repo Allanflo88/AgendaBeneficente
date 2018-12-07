@@ -11776,4 +11776,25 @@ input[disabled], textarea[disabled] {
   color: #444 !important;
 }
 
-
+input.ng-invalid.ng-touched{
+  border-bottom: 1px solid red;
+}
+input.ng-valid.ng-touched{
+  border-bottom: 1px solid green;
+}
+textarea.ng-touched.ng-invalid{
+  border: 1px solid red;
+  border-radius: 2px;
+}
+textarea.ng-touched.ng-valid{
+  border: 1px solid green;
+  border-radius: 2px;
+}
+select.ng-touched.ng-invalid{
+  border: 1px solid red;
+  border-radius: 2px;
+}
+select.ng-touched.ng-valid{
+  border: 1px solid green;
+  border-radius: 2px;
+}

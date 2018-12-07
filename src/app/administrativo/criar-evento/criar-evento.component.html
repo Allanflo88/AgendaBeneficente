@@ -1,122 +1,210 @@
 <app-header></app-header>
 
 <div class="container pt-4">
-  <form>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <fieldset>
       <legend>Criar Evento</legend>
       <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Título</label>
+        <label class="col-sm-2 col-form-label">Título</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="text" placeholder="Título do evento" required/>
+          <input
+            class="form-control-plaintext"
+            type="text"
+            placeholder="Título do evento"
+            [(ngModel)]="evento.Titulo"
+            name="titulo"
+            required
+          />
         </div>
       </div>
       <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Descrição</label>
+        <label class="col-sm-2 col-form-label">Descrição</label>
         <div class="col-sm-10">
-          <textarea rows="8" class="form-control-plaintext" type="text" placeholder="Descrição do evento" required></textarea>
+          <textarea
+            rows="8"
+            class="form-control-plaintext"
+            type="text"
+            placeholder="Descrição do evento"
+            [(ngModel)]="evento.Descricao"
+            name="descricao"
+            required
+          ></textarea>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Data do início</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="date" required/>
+          <input
+            class="form-control-plaintext"
+            type="date"
+            [(ngModel)]="evento.DataInicio"
+            name="dataInicio"
+            required
+          />
         </div>
         <label class="col-sm-2 col-form-label">Data do fim</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="date" required/>
+          <input
+            class="form-control-plaintext"
+            type="date"
+            [(ngModel)]="evento.DataFim"
+            name="dataFim"
+            required
+          />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Horário de início</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="time" required/>
+          <input
+            class="form-control-plaintext"
+            type="time"
+            [(ngModel)]="evento.HoraInicio"
+            name="horaInicio"
+            required
+          />
         </div>
         <label class="col-sm-2 col-form-label">Horário de fim</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="time" required/>
+          <input
+            class="form-control-plaintext"
+            type="time"
+            [(ngModel)]="evento.HoraFim"
+            name="horaFim"
+            required
+          />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Logradouro</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="text" placeholder="Rua, Avenida, Alameda, ..." required/>
+          <input
+            class="form-control-plaintext"
+            type="text"
+            placeholder="Rua, Avenida, Alameda, ..."
+            [(ngModel)]="evento.Endereco.Logradouro"
+            name="logradouro"
+            required
+          />
         </div>
         <label class="col-sm-2 col-form-label">Número</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="number" placeholder="Nº" required/>
+          <input
+            class="form-control-plaintext"
+            type="number"
+            placeholder="Nº"
+            [(ngModel)]="evento.Endereco.Numero"
+            name="num"
+            required
+          />
         </div>
         <label class="col-sm-2 col-form-label">Bairro</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="text" required/>
+          <input
+            class="form-control-plaintext"
+            type="text"
+            [(ngModel)]="evento.Endereco.Bairro"
+            name="bairro"
+            required
+          />
         </div>
         <label class="col-sm-2 col-form-label">Cidade</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" type="text" required/>
+          <input
+            class="form-control-plaintext"
+            type="text"
+            [(ngModel)]="evento.Endereco.Cidade"
+            name="cidade"
+            required
+          />
         </div>
         <label class="col-sm-2 col-form-label">Estado</label>
         <div class="col-sm-10">
-          <select class="custom-select" required>
+          <select
+            class="custom-select"
+            [(ngModel)]="evento.Endereco.Estado"
+            name="estado"
+            required
+          >
             <option selected="">Selecione o estado</option>
-            <option value="estado.sigla" *ngFor="let estado of estados">
-              {{estado.nome}}
+            <option value="{{estado.sigla}}" *ngFor="let estado of estados">
+              {{ estado.nome }}
             </option>
           </select>
         </div>
+        <label class="col-sm-2 col-form-label">CEP</label>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            name="cep"
+            type="text"
+            [(ngModel)]="evento.Endereco.CEP"
+            name="cep"
+            required
+            mask="00000-000"
+          />
+        </div>
       </div>
       <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Localização</label>
-          <div class="col-sm-10">
-            <p>
-              Instruções:
-            </p>
-            <ul>
-                <li>
-                    Acesse <a href="https://www.google.com.br/maps/" target="_blank" >https://www.google.com.br/maps/</a>;
-                </li>
-                <li>
-                    Busque pelo local desejado;
-                </li>
-                <li>
-                    Clique em compartilhar;
-                </li>
-                <li>
-                    Selecione a aba "Incorporar mapa";
-                </li>
-                <li>
-                    Clique em "Copiar HTML";
-                </li>
-              </ul>
-          </div>
-          <div class="col-sm-10">
-            <input
-              class="form-control-plaintext"
-              name="localizacao"
-              type="text"
-              placeholder="Cole aqui a localização"
-              required
-            />
-          </div>
+        <label class="col-sm-2 col-form-label">Localização</label>
+        <div class="col-sm-10">
+          <p>Instruções:</p>
+          <ul>
+            <li>
+              Acesse
+              <a href="https://www.google.com.br/maps/" target="_blank"
+                >https://www.google.com.br/maps/</a
+              >;
+            </li>
+            <li>Busque pelo local desejado;</li>
+            <li>Clique em compartilhar;</li>
+            <li>Selecione a aba "Incorporar mapa";</li>
+            <li>Clique em "Copiar HTML";</li>
+          </ul>
         </div>
+        <div class="col-sm-10">
+          <input
+            class="form-control-plaintext"
+            name="localizacao"
+            type="text"
+            placeholder="Cole aqui a localização"
+            [(ngModel)]="evento.Endereco.Localizacao"
+            required
+          />
+        </div>
+      </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Imagem</label>
         <div class="col-sm-10">
           <div class="custom-file">
-            <label class="custom-file-label" for="imagem">Escolher arquivo</label>
+            <label class="custom-file-label" for="imagem"
+              >Escolher arquivo</label
+            >
             <input
               type="file"
               class="custom-file-input"
               id="imagem"
+              [(ngModel)]="Imagem"
+              name="imagem"
               required
             />
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-lg btn-block" *ngIf="!evento">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg btn-block"
+        *ngIf="!evento.Id"
+      >
         Criar
       </button>
-      <button type="submit" class="btn btn-primary btn-lg btn-block" *ngIf="evento">
-          Atualizar
-        </button>
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg btn-block"
+        *ngIf="evento.Id"
+      >
+        Atualizar
+      </button>
     </fieldset>
   </form>
 </div>

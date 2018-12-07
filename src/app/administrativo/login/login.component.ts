@@ -14,7 +14,11 @@ export class LoginComponent{
   email = "";
   pass = "";
 
-  constructor(private service: EntidadesService, private dataStorage: DataStorageService, private router: Router) { }
+  constructor(private service: EntidadesService, private dataStorage: DataStorageService, private router: Router) {
+    if(dataStorage.getItem("user")){
+      dataStorage.clear();
+    }
+   }
 
   onSubmit(f: NgForm){
     let user = this.service.login({
