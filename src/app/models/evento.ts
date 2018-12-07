@@ -2,7 +2,7 @@ import { Endereco } from "./endereco";
 import { Url } from "url";
 
 export class Evento {
-  Id: String;
+  Id: Number;
   Titulo: String;
   DataInicio: String;
   DataFim: String;

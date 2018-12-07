@@ -7,7 +7,7 @@ export class Endereco {
   Cidade: String;
   Estado: String;
   CEP: String;
-  Localizacao: SafeUrl;
+  Localizacao: any;
 
   constructor(){
   }

@@ -39,13 +39,12 @@ export class CriarEventoComponent implements OnInit {
     else{
       this.evento.DataInicio = moment(this.evento.DataInicio.toString()).format("DD/MM/YYYY");
       this.evento.DataFim = moment(this.evento.DataFim.toString()).format("DD/MM/YYYY");
+      this.evento.Id = Math.floor(Math.random() * 1000);
       try{
-        var file:File = document.getElementById("imagem").files[0];
-        console.log(file);
+        var file:File = (<HTMLInputElement>document.getElementById("imagem")).files[0];
         var upRef = this.storage.ref("/eventos")
         var uploading = upRef.put(file);
         uploading.then(res=>{
-          console.log(res);
           upRef.getDownloadURL().subscribe((res)=>{
             this.evento.Imagem = res
             this.db.list("eventos").push(this.evento);

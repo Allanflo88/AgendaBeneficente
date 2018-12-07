@@ -4,6 +4,7 @@ import { EntidadesService } from 'src/app/services/entidades.service';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { Evento } from 'src/app/models/evento';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-feed',
@@ -12,11 +13,11 @@ import { Evento } from 'src/app/models/evento';
 })
 export class FeedComponent {
 
-  eventos = [];
-  constructor(private service: EventosService, private entidadesService: EntidadesService) {
+  eventos: Evento[];
+  constructor(private sanitizer: DomSanitizer, private service: EventosService, private entidadesService: EntidadesService) {
     this.getEventos();
   }
-
+  
   getEventos(){
     this.service.getEventos().subscribe(res=>{
       this.eventos = res;

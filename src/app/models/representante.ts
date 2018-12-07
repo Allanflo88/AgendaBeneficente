@@ -2,7 +2,7 @@ import { Endereco } from "./endereco";
 
 export class Representante {
 
-    Nome: String;
+    Nome: Number;
     Identidade: String;
     CPF: String;
     Cargo: String;

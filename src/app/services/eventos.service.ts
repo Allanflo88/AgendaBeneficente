@@ -4,7 +4,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { Evento } from '../models/evento';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
