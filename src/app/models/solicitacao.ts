@@ -4,7 +4,11 @@ import { Representante } from "./representante";
 export class Solicitacao {
 
     entidade: Entidade;
-    representante: Representante
+    representante: Representante;
+    motivo: String;
+    id: String;
+    tipo: boolean;
+    status: boolean;
 
     constructor(){
         this.entidade = new Entidade();

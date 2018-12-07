@@ -2,7 +2,7 @@ import { Url } from "url";
 import { Endereco } from "./endereco";
 
 export class Entidade {
-  Id: Number;
+  Id: String;
   NomeEmpresarial: String;
   NomeFantasia: String;
   Email: String;
@@ -13,11 +13,11 @@ export class Entidade {
   CNPJ: String;
   Descricao: String;
   Endereco: Endereco;
-  OSCIP: File | Url;
-  OS: File | Url;
-  CEBAS: File | Url;
+  OSCIP: any;
+  OS: any;
+  CEBAS: any;
   Representante: Number;
-  Imagem: File | Url;
+  Imagem: any;
 
   constructor(){
     this.Endereco = new Endereco();

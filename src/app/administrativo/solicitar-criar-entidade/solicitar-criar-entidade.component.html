@@ -219,15 +219,18 @@
         <label class="col-sm-2 col-form-label">OSCIP</label>
         <div class="col-sm-10">
           <div class="custom-file">
-            <label class="custom-file-label" for="imagem"
+            <label class="custom-file-label" for="imagem" *ngIf="!OSCIP"
               >Escolher arquivo</label
             >
+            <label class="custom-file-label" for="imagem" *ngIf="OSCIP"
+            >{{OSCIP.name}}</label
+          >
             <input
               type="file"
               class="custom-file-input"
-              id="imagem"
-              [(ngModel)]="OSCIP"
+              id="OSCIP"
               name="OSCIP"
+              (change)="change()"
               required
             />
           </div>
@@ -237,14 +240,18 @@
         <label class="col-sm-2 col-form-label">OS</label>
         <div class="col-sm-10">
           <div class="custom-file">
-            <label class="custom-file-label" for="imagem"
+            <label class="custom-file-label" for="imagem" *ngIf="!OS"
               >Escolher arquivo</label
             >
+            <label class="custom-file-label" for="imagem" *ngIf="OS"
+            >{{OS.name}}</label
+          >
             <input
               type="file"
               class="custom-file-input"
-              [(ngModel)]="OS"
+              id="OS"
               name="OS"
+              (change)="change()"
               required
             />
           </div>
@@ -254,14 +261,18 @@
         <label class="col-sm-2 col-form-label">CEBAS</label>
         <div class="col-sm-10">
           <div class="custom-file">
-            <label class="custom-file-label" for="imagem"
+            <label class="custom-file-label" for="imagem" *ngIf="!CEBAS"
               >Escolher arquivo</label
             >
+            <label class="custom-file-label" for="imagem" *ngIf="CEBAS"
+            >{{CEBAS.name}}</label
+          >
             <input
               type="file"
+              id="CEBAS"
               class="custom-file-input"
-              [(ngModel)]="CEBAS"
               name="CEBAS"
+              (change)="change()"
               required
             />
           </div>
@@ -271,13 +282,17 @@
         <label class="col-sm-2 col-form-label">Logotipo</label>
         <div class="col-sm-10">
           <div class="custom-file">
-            <label class="custom-file-label" for="imagem"
+            <label class="custom-file-label" for="imagem" *ngIf="!Imagem"
               >Escolher arquivo</label
             >
+            <label class="custom-file-label" for="imagem" *ngIf="Imagem"
+            >{{Imagem.name}}</label
+          >
             <input
               type="file"
+              id="Imagem"
               class="custom-file-input"
-              [(ngModel)]="Imagem"
+              (change)="change()"
               name="logo"
               required
             />
@@ -449,9 +464,9 @@
         Solicitar cadastro
       </button>
       <button
-        type="submit"
         *ngIf="solicitacao && permission"
         class="btn btn-primary btn-lg btn-block"
+        (click)="cadastrar()"
       >
         Cadastrar
       </button>

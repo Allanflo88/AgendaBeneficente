@@ -47,9 +47,11 @@ export class CriarEventoComponent implements OnInit {
         uploading.then(res=>{
           upRef.getDownloadURL().subscribe((res)=>{
             this.evento.Imagem = res
-            this.db.list("eventos").push(this.evento);
-            alert("Evento criado");
-            this.router.navigate(["/feed"])
+            this.db.list("eventos").push(this.evento).then(()=>{
+              alert("Evento criado");
+              this.router.navigate(["/feed"])
+            });
+
           });
 
         }).catch((err)=>{
