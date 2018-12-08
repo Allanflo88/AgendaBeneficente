@@ -22,7 +22,7 @@ export class DetalhesEventoComponent {
   constructor(private sanitizer:DomSanitizer, private route: ActivatedRoute, private serviceEventos: EventosService, serviceEntidade: EntidadesService) {
     this.serviceEventos = serviceEventos;
     this.getEvento();
-    this.entidade = serviceEntidade.getEntidade(this.evento.Id);
+    this.entidade = serviceEntidade.getEntidade(this.evento.Entidade);
   }
 
   getEvento(){
