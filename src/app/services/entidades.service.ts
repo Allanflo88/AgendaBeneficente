@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
+import { Entidade } from '../models/entidade';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EntidadesService {
 
-  entidades = this.generateEntidades();
+  entidades: Entidade[]
+  obs: Observable<Entidade[]>
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private db: AngularFireDatabase) {
+    this.obs = db.list<Entidade>("entidades").valueChanges();
+    this.obs.subscribe((res)=>{
+      this.entidades = res;
+    })
+  }
 
   login(login){
     return this.entidades.find((entidade)=>{
@@ -17,7 +26,7 @@ export class EntidadesService {
   }
 
   getEntidades(){
-    return this.entidades;
+    return this.obs;
   }
 
   getEntidade(id){

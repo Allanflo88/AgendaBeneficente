@@ -10,15 +10,16 @@ import { Entidade } from 'src/app/models/entidade';
 })
 export class DetalhesEntidadeComponent {
 
+  
   entidade: Entidade
   serviceEntidade;
   constructor(private route: ActivatedRoute, serviceEntidade: EntidadesService) {
     this.entidade = new Entidade();
     this.serviceEntidade = serviceEntidade;
-    this.getEvento();
+    this.getEntidade();
   }
 
-  getEvento(){
+  getEntidade(){
     let id = this.route.snapshot.paramMap.get('id');
     this.entidade = this.serviceEntidade.getEntidade(id);
   }

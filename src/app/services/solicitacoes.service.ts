@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Solicitacao } from '../models/solicitacao';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitacoesService {
 
-  solicitacoes = [];
-  constructor() { 
-    this.solicitacoes = this.generateSolicitacoes();
+  solicitacoes:Solicitacao[];
+  obs: Observable<Solicitacao[]>
+
+  constructor(private db: AngularFireDatabase) { 
+    this.obs = db.list<Solicitacao>("solicitacoes").valueChanges()
+    this.obs.subscribe((res)=>{
+      this.solicitacoes = res;
+    })
   }
 
   getSolicitacao(id){
     this.solicitacoes.find((item)=>{
-      return item.Id == id;
+      return item.id = id;
     })
     return id;
   }
@@ -33,6 +41,6 @@ export class SolicitacoesService {
     return solicitacoes;
   }
   getSolicitacoes(){
-    return this.solicitacoes;
+    return this.obs;
   }
 }

@@ -46,12 +46,17 @@ export class SolicitarDeletarEntidadeComponent{
       solicitacao.entidade = new Entidade()
       solicitacao.representante = this.representante
       solicitacao.motivo = this.motivo
+      solicitacao.tipo = false
 
-      this.db.list("solicitacoes").push(solicitacao).then(()=>{
+      this.db.object("solicitacoes/" + solicitacao.id).set(solicitacao).then(()=>{
         alert("Sua solicitação foi enviada");
         this.router.navigate(["/feed"]);
       })
     }
+  }
+
+  desativar(){
+    this.db.object("solicitacoes" + this.solicitacao.id).update({Ativo: true});
   }
 
 }

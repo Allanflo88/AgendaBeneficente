@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EntidadesService } from 'src/app/services/entidades.service';
+import { Entidade } from 'src/app/models/entidade';
 
 @Component({
   selector: 'app-listar-entidades',
@@ -8,9 +9,11 @@ import { EntidadesService } from 'src/app/services/entidades.service';
 })
 export class ListarEntidadesComponent implements OnInit {
 
-  entidades = []
+  entidades: Entidade[]
   constructor(private service: EntidadesService) {
-    this.entidades = service.getEntidades();
+    service.getEntidades().subscribe((res)=>{
+      this.entidades = res;
+    });
   }
 
   ngOnInit() {

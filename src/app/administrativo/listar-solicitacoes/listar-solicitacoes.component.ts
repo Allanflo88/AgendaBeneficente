@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SolicitacoesService } from 'src/app/services/solicitacoes.service';
+import { Solicitacao } from 'src/app/models/solicitacao';
 
 @Component({
   selector: 'app-listar-solicitacoes',
@@ -8,9 +9,11 @@ import { SolicitacoesService } from 'src/app/services/solicitacoes.service';
 })
 export class ListarSolicitacoesComponent implements OnInit {
 
-  list = [];
+  list:Solicitacao[];
   constructor(private service: SolicitacoesService) {
-    this.list = service.getSolicitacoes();
+    service.getSolicitacoes().subscribe((res)=>{
+      this.list = res;
+    });
   }
 
   ngOnInit() {

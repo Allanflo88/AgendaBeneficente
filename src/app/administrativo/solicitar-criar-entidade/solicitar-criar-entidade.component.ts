@@ -52,6 +52,7 @@ export class SolicitarCriarEntidadeComponent{
     }
     else{
       var solicitacao: Solicitacao = new Solicitacao();
+      solicitacao.tipo = false
       solicitacao.entidade = this.entidade
       solicitacao.entidade.OSCIP = this.OSCIP
       solicitacao.entidade.OS = this.OS
@@ -79,7 +80,7 @@ export class SolicitarCriarEntidadeComponent{
                       solicitacao.entidade.Imagem = img
 
 
-                      this.db.list("solicitacoes").push(solicitacao).then(()=>{
+                      this.db.object("solicitacoes/" + solicitacao.id).set(solicitacao).then(()=>{
                         alert("Sua solicitação foi enviada");
                         this.router.navigate(["/feed"]);
                       })
@@ -99,8 +100,9 @@ export class SolicitarCriarEntidadeComponent{
   }
 
   cadastrar(){
-    
-    //this.db.list("solicitacoes").update(this.solicitacao.id, this.solicitacao)
+    var entidade: Entidade;
+    entidade = this.solicitacao.entidade;
+    this.db.object("entidades/" + this.entidade.Id).set(entidade);
   }
 
 }
