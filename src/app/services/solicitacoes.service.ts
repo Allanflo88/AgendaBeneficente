@@ -19,10 +19,8 @@ export class SolicitacoesService {
   }
 
   getSolicitacao(id){
-    this.solicitacoes.find((item)=>{
-      return item.id = id;
-    })
-    return id;
+    return this.db.object<Solicitacao>("solicitacoes/" + id).valueChanges();
+
   }
 
   generateSolicitacoes(){

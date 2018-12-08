@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { AngularFireDatabase } from '@angular/fire/database';
 import * as moment from 'moment';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { DataStorageService } from 'src/app/services/data-storage.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class CriarEventoComponent implements OnInit {
   evento: Evento;
   estados = [];
   Imagem: File
-  constructor(private router: Router,private storage: AngularFireStorage,private estadoService: EstadosService, private route: ActivatedRoute, private eventoService: EventosService, private db: AngularFireDatabase) {
+  constructor(private dataStorage: DataStorageService,private router: Router,private storage: AngularFireStorage,private estadoService: EstadosService, private route: ActivatedRoute, private eventoService: EventosService, private db: AngularFireDatabase) {
     this.estados =  estadoService.getEstados();
     this.getEvento();
   }
@@ -47,6 +48,7 @@ export class CriarEventoComponent implements OnInit {
         uploading.then(res=>{
           upRef.getDownloadURL().subscribe((res)=>{
             this.evento.Imagem = res
+            this.evento.Entidade = this.dataStorage.getItem("user");
             this.db.object("eventos/" + this.evento.Id).set(this.evento).then(()=>{
               alert("Evento criado");
               this.router.navigate(["/feed"])

@@ -12,6 +12,7 @@
             [(ngModel)]="representante.Nome"
             name="rpNome"
             type="text"
+            [disabled]="solicitacao"
             required
           />
         </div>
@@ -24,6 +25,7 @@
             [(ngModel)]="representante.CPF"
             mask="000.000.000-00"
             name="rpCPF"
+            [disabled]="solicitacao"
             type="text"
             required
           />
@@ -37,6 +39,7 @@
             [(ngModel)]="representante.Identidade"
             name="rpIdentidade"
             type="text"
+            [disabled]="solicitacao"
             required
           />
         </div>
@@ -49,6 +52,7 @@
             [(ngModel)]="representante.Cargo"
             name="rpCargo"
             type="text"
+            [disabled]="solicitacao"
           />
         </div>
       </div>
@@ -61,6 +65,7 @@
             mask="(00) 0000-0000"
             name="rpTel"
             type="tel"
+            [disabled]="solicitacao"
           />
         </div>
       </div>
@@ -73,6 +78,7 @@
             mask="(00) 0 0000-0000"
             name="rpCel"
             type="tel"
+            [disabled]="solicitacao"
             required
           />
         </div>
@@ -85,6 +91,7 @@
             [(ngModel)]="representante.Endereco.Logradouro"
             name="rpLogradouro"
             type="text"
+            [disabled]="solicitacao"
             required
           />
         </div>
@@ -95,6 +102,7 @@
             [(ngModel)]="representante.Endereco.Numero"
             name="rpEndNumero"
             type="number"
+            [disabled]="solicitacao"
             required
           />
         </div>
@@ -105,6 +113,7 @@
             [(ngModel)]="representante.Endereco.Bairro"
             name="rpBairro"
             type="text"
+            [disabled]="solicitacao"
             required
           />
         </div>
@@ -115,6 +124,7 @@
             [(ngModel)]="representante.Endereco.Cidade"
             name="rpCidade"
             type="text"
+            [disabled]="solicitacao"
             required
           />
         </div>
@@ -124,6 +134,7 @@
             class="custom-select"
             [(ngModel)]="representante.Endereco.Estado"
             name="rpEstado"
+            [disabled]="solicitacao"
             required
           >
             <option selected=""></option>
@@ -139,6 +150,7 @@
             [(ngModel)]="representante.Endereco.CEP"
             name="cep"
             type="text"
+            [disabled]="solicitacao"
             required
             mask="00000-000"
           />
@@ -151,6 +163,7 @@
             class="form-control-plaintext"
             [(ngModel)]="motivo"
             name="motivo"
+            [disabled]="solicitacao"
             type="text"
             required
           ></textarea>

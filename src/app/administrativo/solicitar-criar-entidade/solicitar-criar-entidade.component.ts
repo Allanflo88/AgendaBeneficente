@@ -36,7 +36,14 @@ export class SolicitarCriarEntidadeComponent{
   
   getSolicitacao(){
     let id = this.route.snapshot.paramMap.get('id');
-    this.solicitacao = this.solicitacoesService.getSolicitacao(id);
+    if(id){
+      this.solicitacoesService.getSolicitacao(id).subscribe((res)=>{
+        this.solicitacao = res;
+        this.entidade = this.solicitacao.entidade;
+        this.representante = this.solicitacao.representante;
+      });
+
+    }
   }
 
   change(){

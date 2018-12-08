@@ -18,7 +18,7 @@ export class SolicitarDeletarEntidadeComponent{
 
   representante: Representante;
   estados = [];
-  motivo = "";
+  motivo: String = "";
   solicitacao: Solicitacao;
   user = {
     Id: (new DataStorageService).getItem("user") 
@@ -32,8 +32,13 @@ export class SolicitarDeletarEntidadeComponent{
 
   getSolicitacao(){
     let id = this.route.snapshot.paramMap.get('id');
-    this.solicitacao = this.solicitacoesService.getSolicitacao(id);
-    console.log(this.solicitacao);
+    if(id){
+      this.solicitacoesService.getSolicitacao(id).subscribe((res)=>{
+        this.solicitacao = res;
+        this.representante = this.solicitacao.representante;
+      });
+
+    }
   }
 
   onSubmit(f:NgForm){
