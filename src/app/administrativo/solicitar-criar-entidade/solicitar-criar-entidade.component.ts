@@ -67,9 +67,9 @@ export class SolicitarCriarEntidadeComponent{
       solicitacao.entidade.CEBAS = this.CEBAS
       solicitacao.entidade.Imagem = this.Imagem
       solicitacao.representante = this.representante
-      var oscip = this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.OSCIP.name)
-      var os = this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.OS.name)
-      var cebas = this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.CEBAS.name)
+      var oscip = (this.OSCIP) ? this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.OSCIP.name) : null
+      var os = (this.OS) ? this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.OS.name) : null
+      var cebas = (this.CEBAS) ? this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.CEBAS.name) : null
       var imagem = this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.Imagem.name)
       oscip.put(this.OSCIP).then(()=>{
         oscip.getDownloadURL().subscribe((doc1)=>{
