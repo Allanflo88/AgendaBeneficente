@@ -42,7 +42,7 @@ export class SolicitarDeletarEntidadeComponent{
   }
 
   onSubmit(f:NgForm){
-     if(f.invalid || f.untouched || f.errors || f.pristine){
+     if(f.invalid || f.errors || f.pristine){
        alert("Há campos incorretos ou não preenchidos");
      }
      else{
