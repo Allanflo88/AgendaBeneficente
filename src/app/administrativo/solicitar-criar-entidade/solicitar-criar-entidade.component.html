@@ -506,7 +506,7 @@
       </button>
       <button
         class="btn btn-danger btn-lg btn-block"
-        routerLink="/solicitar-deletar/"
+        routerLink="/solicitar-deletar/{{solicitacao.id}}"
         *ngIf="solicitacao && !permission"
       >
         Solicitar desativação

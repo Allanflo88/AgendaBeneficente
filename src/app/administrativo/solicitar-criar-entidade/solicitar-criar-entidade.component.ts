@@ -60,6 +60,7 @@ export class SolicitarCriarEntidadeComponent{
     }
     else{
       var solicitacao: Solicitacao = new Solicitacao();
+      solicitacao.id = Math.floor(Math.random() * 1000).toString();
       solicitacao.tipo = false
       solicitacao.entidade = this.entidade
       solicitacao.entidade.OSCIP = this.OSCIP

@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: "solicitacoes", component: ListarSolicitacoesComponent },
   { path: "solicitar-criar", component: SolicitarCriarEntidadeComponent },
   { path: "solicitar-deletar", component: SolicitarDeletarEntidadeComponent },
+  { path: "solicitar-deletar/:id", component: SolicitarDeletarEntidadeComponent },
   { path: "solicitar-criar/:id", component: SolicitarCriarEntidadeComponent },
   {
     path: "solicitar-deletar/:id",

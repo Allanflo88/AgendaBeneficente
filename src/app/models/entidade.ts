@@ -18,6 +18,7 @@ export class Entidade {
   CEBAS: any;
   Representante: String;
   Imagem: any;
+  Ativo: boolean;
 
   constructor(){
     this.Endereco = new Endereco();

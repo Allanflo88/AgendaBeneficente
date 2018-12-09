@@ -13,7 +13,12 @@ export class ListarEntidadesComponent implements OnInit {
   constructor(private service: EntidadesService) {
     service.getEntidades().subscribe((res)=>{
        this.entidades = res.filter((item)=>{
-        return item.Id != "-1";
+         if(item.Ativo){
+          return item.Id != "-1";
+         }
+         else{
+           return false;
+         }
       })
     });
   }

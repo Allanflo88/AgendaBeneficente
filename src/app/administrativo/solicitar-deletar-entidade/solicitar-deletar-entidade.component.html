@@ -12,7 +12,7 @@
             [(ngModel)]="representante.Nome"
             name="rpNome"
             type="text"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
           />
         </div>
@@ -25,7 +25,7 @@
             [(ngModel)]="representante.CPF"
             mask="000.000.000-00"
             name="rpCPF"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             type="text"
             required
           />
@@ -39,7 +39,7 @@
             [(ngModel)]="representante.Identidade"
             name="rpIdentidade"
             type="text"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
           />
         </div>
@@ -52,7 +52,7 @@
             [(ngModel)]="representante.Cargo"
             name="rpCargo"
             type="text"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
           />
         </div>
       </div>
@@ -65,7 +65,7 @@
             mask="(00) 0000-0000"
             name="rpTel"
             type="tel"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
           />
         </div>
       </div>
@@ -78,7 +78,7 @@
             mask="(00) 0 0000-0000"
             name="rpCel"
             type="tel"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
           />
         </div>
@@ -91,7 +91,7 @@
             [(ngModel)]="representante.Endereco.Logradouro"
             name="rpLogradouro"
             type="text"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
           />
         </div>
@@ -102,7 +102,7 @@
             [(ngModel)]="representante.Endereco.Numero"
             name="rpEndNumero"
             type="number"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
           />
         </div>
@@ -113,7 +113,7 @@
             [(ngModel)]="representante.Endereco.Bairro"
             name="rpBairro"
             type="text"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
           />
         </div>
@@ -124,7 +124,7 @@
             [(ngModel)]="representante.Endereco.Cidade"
             name="rpCidade"
             type="text"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
           />
         </div>
@@ -134,7 +134,7 @@
             class="custom-select"
             [(ngModel)]="representante.Endereco.Estado"
             name="rpEstado"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
           >
             <option selected=""></option>
@@ -150,7 +150,7 @@
             [(ngModel)]="representante.Endereco.CEP"
             name="cep"
             type="text"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             required
             mask="00000-000"
           />
@@ -163,19 +163,19 @@
             class="form-control-plaintext"
             [(ngModel)]="motivo"
             name="motivo"
-            [disabled]="solicitacao"
+            [disabled]="permissao"
             type="text"
             required
           ></textarea>
         </div>
       </div>
 
-      <button type="submit" *ngIf="!solicitacao" class="btn btn-danger btn-lg btn-block">
+      <button type="submit" *ngIf="!permissao" class="btn btn-danger btn-lg btn-block">
         Solicitar desativação
       </button>
       <button
       type="submit"
-      *ngIf="solicitacao"
+      *ngIf="permissao"
       class="btn btn-danger btn-lg btn-block"
       (click)="desativar($event)"
     >
