@@ -60,8 +60,13 @@ export class SolicitarDeletarEntidadeComponent{
     }
   }
 
-  desativar(){
-    this.db.object("solicitacoes" + this.solicitacao.id).update({Ativo: true});
+  desativar(f: MouseEvent){
+    this.db.object("solicitacoes" + this.solicitacao.id).update({Ativo: true}).then(()=>{
+      this.router.navigate(["/solicitacoes"]);
+
+    })
+    f.preventDefault
+
   }
 
 }

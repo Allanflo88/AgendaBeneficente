@@ -138,7 +138,7 @@
             required
           >
             <option selected=""></option>
-            <option value="estado.sigla" *ngFor="let estado of estados">{{
+            <option value="{{estado.sigla}}" *ngFor="let estado of estados">{{
               estado.nome
             }}</option>
           </select>
@@ -177,7 +177,7 @@
       type="submit"
       *ngIf="solicitacao"
       class="btn btn-danger btn-lg btn-block"
-      (click)="desativar()"
+      (click)="desativar($event)"
     >
       Desativar
     </button>

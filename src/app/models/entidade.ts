@@ -16,7 +16,7 @@ export class Entidade {
   OSCIP: any;
   OS: any;
   CEBAS: any;
-  Representante: Number;
+  Representante: String;
   Imagem: any;
 
   constructor(){

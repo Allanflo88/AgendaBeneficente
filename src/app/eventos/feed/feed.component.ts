@@ -25,22 +25,24 @@ export class FeedComponent {
   }
 
   onFiltro(filtro:any){
-    this.getEventos();
-    this.eventos = this.eventos.filter((evento)=>{
-      switch(filtro.tipo){
-        case "Data":
-          var date = moment(filtro.filtro).format("DD/MM/YYYY");
-          return evento.DataInicio ==  date || evento.DataFim == date;
-        case "Entidade":
-          var id = this.getEntidade(filtro.filtro)
-          return id ? id : 0;
-        case "Título":
-        console.log(evento);
-          return evento.Titulo.includes(filtro.filtro);
-        case "Cidade":
-          return evento.Endereco.Cidade.includes(filtro.filtro);
-      }
-    });
+    this.service.getEventos().subscribe(res=>{
+      this.eventos = res.filter((evento)=>{
+        switch(filtro.tipo){
+          case "Data":
+            var date = moment(filtro.filtro).format("DD/MM/YYYY");
+            return evento.DataInicio ==  date || evento.DataFim == date;
+          case "Entidade":
+            var id = this.getEntidade(filtro.filtro)
+            return id ? id : 0;
+          case "Título":
+          console.log(evento);
+            return evento.Titulo.includes(filtro.filtro);
+          case "Cidade":
+            return evento.Endereco.Cidade.includes(filtro.filtro);
+        }
+      });
+    })
+    
   }
 
   getEntidade(nome){

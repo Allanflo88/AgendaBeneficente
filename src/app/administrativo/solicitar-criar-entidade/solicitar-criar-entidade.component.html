@@ -168,7 +168,7 @@
             [disabled]="solicitacao"
           >
             <option selected="">Selecione o estado</option>
-            <option value="estado.sigla" *ngFor="let estado of estados">{{
+            <option value="{{estado.sigla}}" *ngFor="let estado of estados">{{
               estado.nome
             }}</option>
           </select>
@@ -215,6 +215,14 @@
           />
         </div>
       </div>
+      <div class="form-group row" *ngIf="solicitacao && entidade.OSCIP">
+        <label class="col-sm-2 col-form-label">OSCIP</label>
+        <div class="col-sm-10">
+          <p>
+              {{entidade.OSCIP}}
+          </p>
+        </div>
+      </div>
       <div class="form-group row" *ngIf="!solicitacao">
         <label class="col-sm-2 col-form-label">OSCIP</label>
         <div class="col-sm-10">
@@ -236,69 +244,92 @@
           </div>
         </div>
       </div>
-      <div class="form-group row" *ngIf="!solicitacao">
+      <div class="form-group row" *ngIf="solicitacao && entidade.OS">
         <label class="col-sm-2 col-form-label">OS</label>
         <div class="col-sm-10">
-          <div class="custom-file">
-            <label class="custom-file-label" for="imagem" *ngIf="!OS"
-              >Escolher arquivo</label
-            >
-            <label class="custom-file-label" for="imagem" *ngIf="OS"
-            >{{OS.name}}</label
-          >
-            <input
-              type="file"
-              class="custom-file-input"
-              id="OS"
-              name="OS"
-              (change)="change()"
-              required
-            />
-          </div>
+            <p>
+                {{entidade.OSCIP}}
+            </p>
         </div>
       </div>
       <div class="form-group row" *ngIf="!solicitacao">
+          <label class="col-sm-2 col-form-label">OS</label>
+          <div class="col-sm-10">
+            <div class="custom-file">
+              <label class="custom-file-label" for="imagem" *ngIf="!OS"
+                >Escolher arquivo</label
+              >
+              <label class="custom-file-label" for="imagem" *ngIf="OS"
+              >{{OS.name}}</label
+            >
+              <input
+                type="file"
+                class="custom-file-input"
+                id="OS"
+                name="OS"
+                (change)="change()"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      <div class="form-group row" *ngIf="solicitacao && entidade.CEBAS">
         <label class="col-sm-2 col-form-label">CEBAS</label>
         <div class="col-sm-10">
-          <div class="custom-file">
-            <label class="custom-file-label" for="imagem" *ngIf="!CEBAS"
-              >Escolher arquivo</label
-            >
-            <label class="custom-file-label" for="imagem" *ngIf="CEBAS"
-            >{{CEBAS.name}}</label
-          >
-            <input
-              type="file"
-              id="CEBAS"
-              class="custom-file-input"
-              name="CEBAS"
-              (change)="change()"
-              required
-            />
-          </div>
+            <p>
+                {{entidade.CEBAS}}
+            </p>
         </div>
       </div>
       <div class="form-group row" *ngIf="!solicitacao">
-        <label class="col-sm-2 col-form-label">Logotipo</label>
-        <div class="col-sm-10">
-          <div class="custom-file">
-            <label class="custom-file-label" for="imagem" *ngIf="!Imagem"
-              >Escolher arquivo</label
+          <label class="col-sm-2 col-form-label">CEBAS</label>
+          <div class="col-sm-10">
+            <div class="custom-file">
+              <label class="custom-file-label" for="imagem" *ngIf="!CEBAS"
+                >Escolher arquivo</label
+              >
+              <label class="custom-file-label" for="imagem" *ngIf="CEBAS"
+              >{{CEBAS.name}}</label
             >
-            <label class="custom-file-label" for="imagem" *ngIf="Imagem"
-            >{{Imagem.name}}</label
-          >
-            <input
-              type="file"
-              id="Imagem"
-              class="custom-file-input"
-              (change)="change()"
-              name="logo"
-              required
-            />
+              <input
+                type="file"
+                id="CEBAS"
+                class="custom-file-input"
+                name="CEBAS"
+                (change)="change()"
+                required
+              />
+            </div>
           </div>
         </div>
+      <div class="form-group row" *ngIf="solicitacao && entidade.Imagem">
+        <label class="col-sm-2 col-form-label">Logotipo</label>
+        <div class="col-sm-10">
+          <img src={{entidade.Imagem}}>
+            
+        </div>
       </div>
+      <div class="form-group row" *ngIf="!solicitacao">
+          <label class="col-sm-2 col-form-label">Logotipo</label>
+          <div class="col-sm-10">
+            <div class="custom-file">
+              <label class="custom-file-label" for="imagem" *ngIf="!Imagem"
+                >Escolher arquivo</label
+              >
+              <label class="custom-file-label" for="imagem" *ngIf="Imagem"
+              >{{Imagem.name}}</label
+            >
+              <input
+                type="file"
+                id="Imagem"
+                class="custom-file-input"
+                (change)="change()"
+                name="logo"
+                required
+              />
+            </div>
+          </div>
+        </div>
       <legend>Representante</legend>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Nome</label>
@@ -438,7 +469,7 @@
             [disabled]="solicitacao"
           >
             <option selected="">Selecione o estado</option>
-            <option value="estado.sigla" *ngFor="let estado of estados">{{
+            <option value="{{estado.sigla}}" *ngFor="let estado of estados">{{
               estado.nome
             }}</option>
           </select>
@@ -466,7 +497,7 @@
       <button
         *ngIf="solicitacao && permission"
         class="btn btn-primary btn-lg btn-block"
-        (click)="cadastrar()"
+        (click)="cadastrar($event)"
       >
         Cadastrar
       </button>

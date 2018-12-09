@@ -37,7 +37,14 @@ export class EntidadesService {
 
   getIdEntidade(nome){
     var entidade = this.entidades.find((ent)=>{
-      return ent.NomeFantasia.includes(nome) || ent.NomeEmpresarial.includes(nome);
+
+      if(ent.Id != "-1"){
+        return ent.NomeFantasia.includes(nome) || ent.NomeEmpresarial.includes(nome);
+
+      }
+      else {
+        return false;
+      }
     });
     return entidade.Id;
   }

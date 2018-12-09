@@ -9,6 +9,7 @@ import { Solicitacao } from 'src/app/models/solicitacao';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireDatabase } from '@angular/fire/database';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-solicitar-criar-entidade',
@@ -106,10 +107,19 @@ export class SolicitarCriarEntidadeComponent{
     }
   }
 
-  cadastrar(){
+  cadastrar(f: MouseEvent){
     var entidade: Entidade;
     entidade = this.solicitacao.entidade;
-    this.db.object("entidades/" + this.entidade.Id).set(entidade);
+    var representante = this.representante
+    representante.Id = Math.floor(Math.random() * 1000).toString();
+    this.db.object("representantes/" + representante.Id).set(representante).then(()=>{
+      entidade.Representante = representante.Id;
+      this.db.object("entidades/" + this.entidade.Id).set(entidade).then(()=>{
+        this.router.navigate(["/solicitacoes"]);
+      });
+    });
+    f.preventDefault()
+
   }
 
 }
