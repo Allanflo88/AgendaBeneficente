@@ -10,6 +10,7 @@ import { DataStorageService } from 'src/app/services/data-storage.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireDatabase } from '@angular/fire/database';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-solicitar-criar-entidade',
@@ -74,37 +75,42 @@ export class SolicitarCriarEntidadeComponent{
       var os = (this.OS) ? this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.OS.name) : null
       var cebas = (this.CEBAS) ? this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.CEBAS.name) : null
       var imagem = this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.Imagem.name)
-      oscip.put(this.OSCIP).then(()=>{
-        oscip.getDownloadURL().subscribe((doc1)=>{
-          solicitacao.entidade.OSCIP = doc1
 
-          os.put(this.OS).then(()=>{
-            os.getDownloadURL().subscribe((doc2)=>{
-              solicitacao.entidade.OS = doc2
-
-              cebas.put(this.CEBAS).then(()=>{
-                cebas.getDownloadURL().subscribe((doc3)=>{
-                  solicitacao.entidade.CEBAS = doc3
-
-                  imagem.put(this.Imagem).then(()=>{
-                    imagem.getDownloadURL().subscribe((img)=>{
-                      solicitacao.entidade.Imagem = img
-
-
-                      this.db.object("solicitacoes/" + solicitacao.id).set(solicitacao).then(()=>{
-                        alert("Sua solicitação foi enviada");
-                        this.router.navigate(["/feed"]);
-                      })
-
-                    })
-                  })
-                })
-              })
-
+      this.db.object("solicitacoes/" + solicitacao.id).set(solicitacao).then(()=>{
+        if(oscip){
+          oscip.put(this.OSCIP).then(()=>{
+            oscip.getDownloadURL().subscribe((doc1)=>{
+              this.db.object("solicitacoes/" + solicitacao.id + "/entidade").update({OSCIP: doc1})
             })
           })
-
+        }
+  
+        if(os){
+          os.put(this.OS).then(()=>{
+            os.getDownloadURL().subscribe((doc2)=>{
+              this.db.object("solicitacoes/" + solicitacao.id + "/entidade").update({OS: doc2})
+    
+            })
+          })
+  
+        }
+  
+        if(cebas){
+          cebas.put(this.CEBAS).then(()=>{
+            cebas.getDownloadURL().subscribe((doc3)=>{
+              this.db.object("solicitacoes/" + solicitacao.id + "/entidade").update({CEBAS: doc3})
+            })
+          })
+  
+        }
+  
+        imagem.put(this.Imagem).then(()=>{
+          imagem.getDownloadURL().subscribe((img)=>{
+            this.db.object("solicitacoes/" + solicitacao.id + "/entidade").update({Imagem: img})
+          })
         })
+        alert("Sua solicitação foi enviada");
+        this.router.navigate(["/feed"]);
       })
       
     }
