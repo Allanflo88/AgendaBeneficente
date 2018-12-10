@@ -54,6 +54,7 @@ export class SolicitarDeletarEntidadeComponent{
       solicitacao.motivo = this.motivo
       solicitacao.tipo = false
       solicitacao.id = Math.floor(Math.random() * 1000).toString();
+      solicitacao.status = true;
 
       this.db.object("solicitacoes/" + solicitacao.id).set(solicitacao).then(()=>{
         alert("Sua solicitação foi enviada");
@@ -72,6 +73,13 @@ export class SolicitarDeletarEntidadeComponent{
 
     f.preventDefault()
 
+  }
+
+  deletar(f){
+    this.db.object("solicitacoes/" + this.solicitacao.id).update({status: false}).then(()=>{
+      this.router.navigate(["/solicitacoes"]);
+    })
+    f.preventDefault()
   }
 
 }

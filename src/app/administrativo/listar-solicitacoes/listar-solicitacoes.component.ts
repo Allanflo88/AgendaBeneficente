@@ -12,7 +12,13 @@ export class ListarSolicitacoesComponent implements OnInit {
   list:Solicitacao[];
   constructor(private service: SolicitacoesService) {
     service.getSolicitacoes().subscribe((res)=>{
-      this.list = res;
+      var itens =[];
+      res.forEach((item)=>{
+        if(item.status){
+          itens.push(item)
+        }
+      })
+      this.list = itens
     });
   }
 

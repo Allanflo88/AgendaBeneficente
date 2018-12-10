@@ -61,13 +61,15 @@ export class SolicitarCriarEntidadeComponent{
     else{
       var solicitacao: Solicitacao = new Solicitacao();
       solicitacao.id = Math.floor(Math.random() * 1000).toString();
-      solicitacao.tipo = false
+      solicitacao.tipo = true;
       solicitacao.entidade = this.entidade
       solicitacao.entidade.OSCIP = this.OSCIP
       solicitacao.entidade.OS = this.OS
       solicitacao.entidade.CEBAS = this.CEBAS
       solicitacao.entidade.Imagem = this.Imagem
       solicitacao.representante = this.representante
+      solicitacao.status = true
+      solicitacao.entidade.Endereco.Localizacao = this.parseUrl(solicitacao.entidade.Endereco.Localizacao);
       var oscip = (this.OSCIP) ? this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.OSCIP.name) : null
       var os = (this.OS) ? this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.OS.name) : null
       var cebas = (this.CEBAS) ? this.storage.ref(this.entidade.NomeEmpresarial + "-" + this.CEBAS.name) : null
@@ -121,6 +123,20 @@ export class SolicitarCriarEntidadeComponent{
     });
     f.preventDefault()
 
+  }
+  parseUrl(url:String): String{
+    var parsedUrl = url;
+    var splitedUrl = parsedUrl.split(" ");
+    parsedUrl = splitedUrl[1].replace("src=", "")
+    parsedUrl = parsedUrl.replace('/"', "")
+    return url
+  }
+
+  deletar(f){
+    this.db.object("solicitacoes/" + this.solicitacao.id).update({status: false}).then(()=>{
+      this.router.navigate(["/solicitacoes"]);
+    })
+    f.preventDefault()
   }
 
 }
